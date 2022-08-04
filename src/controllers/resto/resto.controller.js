@@ -6,6 +6,7 @@ const{saveLocal,deleteLocal} = require('../../services/resto.services');
   // res.json("test base de dato nomgoo") ;
 //};
 
+//metodo para agregar data a la base de datos 
 async function addResto (req,res){
    try{ 
     const data = req.body;
@@ -18,7 +19,7 @@ async function addResto (req,res){
    }
 }
    
-
+// metodo para buscar toda la data de en base de datos 
 async function getAllResto (req,res){
     const locales =await Resto.find({})
     .then(data =>{
@@ -29,7 +30,7 @@ async function getAllResto (req,res){
         res.json(err)
     }) 
 }
-
+//metodo para ver la data en la base de datos  mediante id especifico 
 async function getLocalById (req,res){
     const {id} = req.params;
     const local = await Resto.findById(id)
@@ -41,6 +42,7 @@ async function getLocalById (req,res){
         res.json(err)
     }) 
 }
+/* metodo para modificar datos en la base de datos mediante id especifico*/
 async function updateLocalById(req,res){
     const {id} = req.params;
     const data = req.body;
@@ -66,11 +68,11 @@ async function updateLocalById(req,res){
         res.json(err);
     }) 
 }
-
+//metodo para eliminar la data mediante id especifico
 async function deleteLocalById(req,res){
 try{
     const {id} = req.params;
-    const result = await deleteLocal(id);
+    const local = await deleteLocal(id);
     res.json();
 } catch(err){
     res.status(500);
